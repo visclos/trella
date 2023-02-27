@@ -15,7 +15,7 @@ class CardModel
     private $id;
     private $title;
     private $list_id;
-
+    private $order;
     // Constructeur de la classe qui initialise la connexion à la base de données en appelant la fonction getConnection() définie dans le fichier database.php
     public function __construct()
     {
@@ -32,7 +32,7 @@ class CardModel
         return $result;
     }
 
-    public function findByList($list_id)
+    public function findByList( $list_id)
     {
         $sql = "SELECT * FROM `Card` WHERE `list_id` = :list_id;";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -108,6 +108,34 @@ class CardModel
     public function setList_id($list_id)
     {
         $this->list_id = $list_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of order
+     */ 
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * Get the value of order
+     */ 
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * Set the value of order
+     *
+     * @return  self
+     */ 
+    public function setOrder($order)
+    {
+        $this->order = $order;
 
         return $this;
     }

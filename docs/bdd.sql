@@ -33,7 +33,7 @@ CREATE TABLE `Card` (
   `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+-- ALTER TABLE `Card` ADD `order` INT NOT NULL AFTER `description`
 -- --------------------------------------------------------
 
 --
