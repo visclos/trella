@@ -10,7 +10,7 @@ $config = parse_ini_file(__DIR__ . '/config.ini');
 $router = new AltoRouter();
 $router->setBasePath($config['BASE_PATH']);
 
-$router->map('GET|POST', '/[**:path]', 'Error404Controller', 'static');
+
 $router->map('GET|POST', '/', 'ProjectsController', 'home');
 $router->map('GET|POST', '/board/[i:project_id]', 'BoardController', 'board_index');
 $router->map('POST', '/board/add', 'ProjectsController', 'board_add');
@@ -19,6 +19,8 @@ $router->map('POST', '/board/[i:project_id]/list/add', 'BoardController', 'list_
 $router->map('GET', '/board/[i:project_id]/list/[i:list_id]/delete', 'DeleteListController', 'list_delete');
 $router->map('POST', '/board/[i:project_id]/list/[i:list_id]/card/add', 'AddCardController', 'card_add');
 $router->map('GET', '/board/[i:project_id]/list/[i:list_id]/card/[i:card_id]/delete', 'DeleteCardController', 'card_delete');
+
+$router->map('GET|POST', '/[**:path]', 'Error404Controller', 'static');
 
 $match = $router->match();
 $controller_name = $match["target"] ?? "Error404Controller";
