@@ -56,5 +56,8 @@
                 <?php endforeach ?>
             </div>
         </section>
+        <script src="<?= $router->generate('static', ['path' => 'jquery/jquery.js']) ?>"></script>
+        <script src="<?= $router->generate('static', ['path' => 'jquery/ui/jquery-ui.js']) ?>"></script>
+        <script>console.log("coucou");</script>
     </body>
 </html>

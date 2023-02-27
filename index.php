@@ -10,6 +10,7 @@ $config = parse_ini_file(__DIR__ . '/config.ini');
 $router = new AltoRouter();
 $router->setBasePath($config['BASE_PATH']);
 
+$router->map('GET|POST', '/[**:path]', 'Error404Controller', 'static');
 $router->map('GET|POST', '/', 'ProjectsController', 'home');
 $router->map('GET|POST', '/board/[i:project_id]', 'BoardController', 'board_index');
 $router->map('POST', '/board/add', 'ProjectsController', 'board_add');

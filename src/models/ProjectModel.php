@@ -102,7 +102,7 @@ class ProjectModel
     /**
      * Get the value of description
      */ 
-    public function getDescription() : string
+    public function getDescription() : ?string
     {
         return $this->description;
     }
