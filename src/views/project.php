@@ -37,8 +37,7 @@
                                 </p>
                             </header>
                             <div class="card-content">
-
-                            <form class="py-5" action="<?= $router->generate("card_add", ['project_id' => $list->getProjectId(), 'list_id' => $list->getId()]) ?>" method="POST">
+                                <form class="py-5" action="<?= $router->generate("card_add", ['project_id' => $list->getProjectId(), 'list_id' => $list->getId()]) ?>" method="POST">
                                     <input type="hidden" name="listId" value="<?= $list->getId() ?>">
                                     <input type="hidden" name="projectId" value="<?= $list->getProjectId() ?>">
                                     <div class="field has-addons">

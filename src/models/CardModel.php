@@ -24,17 +24,26 @@ class CardModel
 
     public function create(string $title, int $list_id): bool
     {
-        $sql = "INSERT INTO `Card` (`id`, `title`, `list_id`) VALUES (NULL, :title, :list_id);";
+        $sql = "INSERT INTO `Card` (`id`, `title`, `list_id`, `order`) VALUES (NULL, :title, :list_id, :order);";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
         $pdoStatement->bindParam(':title', $title, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':order', $this->getOrderForList($list_id), PDO::PARAM_INT);
         $result = $pdoStatement->execute();
         return $result;
     }
+    public function getOrderForList($list_id){
+       $sql = "SELECT IFNULL(MAX(`order`)+1, 0) FROM Card WHERE `list_id` = :list_id"; 
+       $pdoStatement = $this->pdo->prepare($sql);
+       $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
+       $result = $pdoStatement->execute();
+       return $pdoStatement->fetch(\PDO::FETCH_COLUMN);
+    }
 
-    public function findByList( $list_id)
+    public function findByList($list_id)
     {
-        $sql = "SELECT * FROM `Card` WHERE `list_id` = :list_id;";
+        $sql = "SELECT * FROM `Card` WHERE `list_id` = :list_id ORDER BY `order`";
+     
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
         $result = $pdoStatement->execute();
@@ -110,14 +119,6 @@ class CardModel
         $this->list_id = $list_id;
 
         return $this;
-    }
-
-    /**
-     * Get the value of order
-     */ 
-    public function getOrder()
-    {
-        return $this->order;
     }
 
     /**
