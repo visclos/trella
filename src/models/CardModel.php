@@ -4,6 +4,7 @@ namespace App\Trello\models;
 
 use PDO;
 use App\Trello\utils\Database;
+use App\Trello\models\CardModel;
 
 
 class CardModel
